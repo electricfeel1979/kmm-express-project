@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 
 import friendsRouter from './routes/friends.router';
 import messagesRouter from './routes/messages.router';
@@ -14,6 +15,7 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.url} ${delta}ms`);
 });
 
+app.use('/site', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 app.use('/friends', friendsRouter);
